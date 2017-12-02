@@ -26,6 +26,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1147151581266208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4694827574026618}
+  - component: {fileID: 65340983807769708}
+  m_Layer: 11
+  m_Name: HitCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1202300995892494
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +52,9 @@ GameObject:
   - component: {fileID: 4806069926839660}
   - component: {fileID: 54492702811305516}
   - component: {fileID: 114702560356811038}
+  - component: {fileID: 114141538737061688}
+  - component: {fileID: 95618790891726114}
+  - component: {fileID: 114798344383570222}
   m_Layer: 9
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -203,6 +222,19 @@ Transform:
   m_Father: {fileID: 4108482497809376}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4694827574026618
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147151581266208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4806069926839660}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4713634627396470
 Transform:
   m_ObjectHideFlags: 1
@@ -246,6 +278,7 @@ Transform:
   - {fileID: 4713634627396470}
   - {fileID: 4080197445835826}
   - {fileID: 4846654266066140}
+  - {fileID: 4694827574026618}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -290,6 +323,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!65 &65340983807769708
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147151581266208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65594226616283624
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -302,6 +347,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95618790891726114
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202300995892494}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 137c634ba3e43a64894701b4d0923fd1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114141538737061688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202300995892494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48c5d5741270b04688754c092fbabe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseAttack: 2
+  baseDefense: 0
+  baseRadius: 2
+  baseHP: 5
+  baseCooldown: 5
 --- !u!114 &114702560356811038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,6 +399,19 @@ MonoBehaviour:
   maxTimeToLive: 500
   BasicEnemy: {fileID: 1202300995892494}
   spawnedEnemies: 0
+  HitCollider: {fileID: 65340983807769708}
+  NormalCollider: {fileID: 65594226616283624}
+--- !u!114 &114798344383570222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202300995892494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e273e09155c7304cb0caa32e5fb4a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212235951031126934
 SpriteRenderer:
   m_ObjectHideFlags: 1

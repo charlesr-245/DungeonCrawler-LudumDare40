@@ -26,9 +26,16 @@ public class EnemyAI : MonoBehaviour {
     private GameObject[] spawnedRushEnemies; //Keeps track of the spawned in rush enemies by the single enemy
     private bool spawningRushEnemies; //Stops new movements from occuring while true
     private List<Transform> callInSpawns; //Spawn points for when the enemy calls in more enemies.
+    private BoxCollider zone; //Zone of allowed movement;
+    private AnimationManager animationManager;
+    private BasicStats stats;
+    public BoxCollider HitCollider;
+    public BoxCollider NormalCollider;
 
     private void Start()
     {
+        animationManager = GetComponent<AnimationManager>();
+        stats = GetComponent<BasicStats>();
         framesSinceLastMovement = 10000; //Makes sure the enemy will be able to make a movement choice on the first frame.
         if (player == null)
         {
@@ -43,6 +50,15 @@ public class EnemyAI : MonoBehaviour {
             {
                 callInSpawns.Add(t);
             }
+        }
+        Hit(stats);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (zone == null && other.gameObject.transform.parent.name == "Level")
+        {
+            zone = other.gameObject.GetComponent<BoxCollider>();
         }
     }
 
@@ -73,23 +89,29 @@ public class EnemyAI : MonoBehaviour {
 
     private void AIChoice()
     {
-        int choice = Random.Range(0, 50);
-        if (choice <= 43)
+        if (zone == player.GetComponent<ZoneRelay>().GetZone())
         {
-            MoveTowardsPlayer();
-        }
-        else if (choice <= 47 && spawnedRushEnemies == null)
-        {
-            SyncronizedAssault();
-        }
-        else
-        {
-            if (!spawnedEnemies)
+            int choice = Random.Range(0, 50);
+            if (choice <= 43)
             {
-                CallInEnemies();
+                MoveTowardsPlayer();
             }
+            else if (choice <= 47 && spawnedRushEnemies == null)
+            {
+                SyncronizedAssault();
+            }
+            else
+            {
+                if (!spawnedEnemies)
+                {
+                    CallInEnemies();
+                }
 
-            MoveTowardsPlayer();
+                MoveTowardsPlayer();
+            }
+        } else
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 
@@ -148,6 +170,51 @@ public class EnemyAI : MonoBehaviour {
             Destroy(r); //Kills the rush enemies once the time limit is exceeded
         }
         spawnedRushEnemies = null; //Resets variable space
+    }
+
+    public void Hit(BasicStats playerStats)
+    {
+        float damage = playerStats.GetAttack() - stats.GetDefense() / 4;
+        Debug.Log(damage);
+        stats.DecreaseHP(damage);
+        Debug.Log(stats.GetHP());
+        rb.velocity = -rb.velocity;
+        HitCollider.isTrigger = false;
+        NormalCollider.isTrigger = true;
+        StartCoroutine(ResumeCollider());
+        framesSinceLastMovement = -100;
+        if (stats.GetHP() <= 0)
+        {
+            Die();
+        } else
+        {
+            animationManager.AddToQueue("Hit");
+        }
+    }
+
+    private IEnumerator ResumeCollider()
+    {
+        for (int x = 0; x < 80; x++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        HitCollider.isTrigger = true;
+        NormalCollider.isTrigger = false;
+    }
+
+    private void Die()
+    {
+        animationManager.AddToQueue("Dead");
+        StartCoroutine(LifeCountdown());
+    }
+
+    private IEnumerator LifeCountdown()
+    {
+        for (int x =0; x < 50; x++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(gameObject);
     }
 
 }

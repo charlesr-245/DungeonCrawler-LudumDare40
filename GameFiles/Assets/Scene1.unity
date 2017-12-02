@@ -838,6 +838,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 227197157}
+  - component: {fileID: 227197158}
   m_Layer: 0
   m_Name: Hall (1)
   m_TagString: Untagged
@@ -861,6 +862,18 @@ Transform:
   m_Father: {fileID: 1769814176}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &227197158
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 227197156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 46.7, y: 18.44, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &239076840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2919,6 +2932,10 @@ GameObject:
   m_Component:
   - component: {fileID: 644586974}
   - component: {fileID: 644586975}
+  - component: {fileID: 644586977}
+  - component: {fileID: 644586976}
+  - component: {fileID: 644586978}
+  - component: {fileID: 644586979}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2984,6 +3001,56 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!54 &644586976
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 644586973}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
+--- !u!114 &644586977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 644586973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4f50da0d13a9148af5385964e94fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+--- !u!135 &644586978
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 644586973}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &644586979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 644586973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c7fb6ebd059aa4f98da0c08b819ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &645164391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,6 +3231,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 656892019}
+  - component: {fileID: 656892020}
   m_Layer: 0
   m_Name: Room (1)
   m_TagString: Untagged
@@ -3190,6 +3258,18 @@ Transform:
   m_Father: {fileID: 1769814176}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &656892020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 656892018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 42.2, y: 29.6, z: 1}
+  m_Center: {x: -5.32, y: -7.3, z: 0}
 --- !u!1 &685570993
 GameObject:
   m_ObjectHideFlags: 0
