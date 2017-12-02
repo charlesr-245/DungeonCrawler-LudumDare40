@@ -26,7 +26,7 @@ public class RushAI : MonoBehaviour {
         }
         rb = GetComponent<Rigidbody>();
         MoveTowardsPlayer();
-        Hit(stats);
+        //Hit(stats);
     }
 
     private void Update()
