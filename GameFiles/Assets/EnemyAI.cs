@@ -51,7 +51,6 @@ public class EnemyAI : MonoBehaviour {
                 callInSpawns.Add(t);
             }
         }
-        Hit(stats);
     }
 
     private void OnTriggerEnter(Collider other)
