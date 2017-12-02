@@ -13,22 +13,37 @@ public class EnemyAI : MonoBehaviour {
     [Header("Rush Enemeies")]
     public GameObject RushEnemy; //Spawns during the syncronized attack
     public int maxRushEnemies; //Max rush enemies a single enemy can spawn
-    [Range(500,100000)]
+    [Range(500,10000)]
     public int maxTimeToLive; //Max number of frames for which the rush enemy can live
+
+    [Header("Call In Enemies")]
+    public GameObject BasicEnemy;
+    public bool spawnedEnemies; //Prevents the enemy from spawning in more than one set of enemies.
 
     private int framesSinceLastMovement; //Records the number of FixedUdpate() frames since the last choice was made by the AI
     private static GameObject player; //References the player
     private Rigidbody rb; //References the local rigidbody
     private GameObject[] spawnedRushEnemies; //Keeps track of the spawned in rush enemies by the single enemy
     private bool spawningRushEnemies; //Stops new movements from occuring while true
+    private List<Transform> callInSpawns; //Spawn points for when the enemy calls in more enemies.
 
     private void Start()
     {
+        framesSinceLastMovement = 10000; //Makes sure the enemy will be able to make a movement choice on the first frame.
         if (player == null)
         {
             player = GameObject.Find("Player");
         }
         rb = GetComponent<Rigidbody>();
+        //Gets Spawn Points
+        callInSpawns = new List<Transform>();
+        foreach (Transform t in transform)
+        {
+            if (t.tag == "CallInSpawnPoint")
+            {
+                callInSpawns.Add(t);
+            }
+        }
     }
 
     private void Update()
@@ -59,17 +74,21 @@ public class EnemyAI : MonoBehaviour {
     private void AIChoice()
     {
         int choice = Random.Range(0, 50);
-        if (choice <= 40)
+        if (choice <= 43)
         {
             MoveTowardsPlayer();
         }
-        else if (choice <= 49 && spawnedRushEnemies == null)
+        else if (choice <= 47 && spawnedRushEnemies == null)
         {
             SyncronizedAssault();
         }
         else
         {
-            //CallInEnemies();
+            if (!spawnedEnemies)
+            {
+                CallInEnemies();
+            }
+
             MoveTowardsPlayer();
         }
     }
@@ -89,6 +108,16 @@ public class EnemyAI : MonoBehaviour {
         int timeToLive = Random.Range(500, maxTimeToLive);
         StartCoroutine(SpawnRushEnemies(timeToLive));
         StartCoroutine(CheckRushLife(timeToLive));
+    }
+
+    private void CallInEnemies()
+    {
+        spawnedEnemies = true;
+        for (int x=0; x<callInSpawns.Count; x++)
+        {
+            GameObject enemy = Instantiate(gameObject, callInSpawns[x].position, Quaternion.identity);
+            enemy.GetComponent<EnemyAI>().spawnedEnemies = true;
+        }
     }
 
     IEnumerator SpawnRushEnemies(int timeToLive)
