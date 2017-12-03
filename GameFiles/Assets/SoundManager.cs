@@ -26,16 +26,42 @@ public class SoundManager : MonoBehaviour {
 
     private void Update()
     {
-        if (pastPlayerZone != playerZone)
+        if (pastPlayerZone != playerZone && playerZone != -1)
         {
             OnZoneChange();
+        }
+        if (music.isPlaying == false && (music.clip == standardAudio[0] || music.clip == superBossAudio[0])) {
+            LoopMusic();
         }
     }
 
     private void OnZoneChange()
     {
+        Debug.Log("true");
         pastPlayerZone = playerZone;
-        
+        if (enemy.superBossInRoom(playerZone) && (music.clip == standardAudio[0] || music.clip == standardAudio[1]))
+        {
+            music.clip = superBossAudio[0];
+            music.Play();
+        } else if (!enemy.superBossInRoom(playerZone) && (music.clip == superBossAudio[0] || music.clip == superBossAudio[1] || music.clip == superBossAudio[2]))
+        {
+            music.clip = standardAudio[0];
+            music.Play();
+        }
+    }
+
+    private void LoopMusic()
+    {
+        music.loop = true;
+        if (music.clip == standardAudio[0])
+        {
+            music.clip = standardAudio[1];
+
+        } else if (music.clip == superBossAudio[0])
+        {
+            music.clip = superBossAudio[1];
+        }
+        music.Play();
     }
 
 }

@@ -8,7 +8,7 @@ public class EnemyManagement : MonoBehaviour {
     public int extraEnemiesBeforeSuperBoss;
 
     public int maxSuperBossesPerRoom;
-    private List<int> superBossesInRoom;
+    private int[] superBossesInRoom;
 
     public GameObject superBoss;
 
@@ -16,12 +16,22 @@ public class EnemyManagement : MonoBehaviour {
 
     private void Start()
     {
-        superBossesInRoom = new List<int>();
+        superBossesInRoom = new int[enemiesPerRoom.Length];
         enemiesInRoom = new List<int>();
         for (int x = 0; x<enemiesPerRoom.Length; x++)
         {
             enemiesInRoom.Add(enemiesPerRoom[x]);
         }
+    }
+
+    public bool superBossInRoom(int zone)
+    {
+        Debug.Log(superBossesInRoom[zone]);
+        if (superBossesInRoom[zone]>0)
+        {
+            return true;
+        }
+        return false;
     }
 
     public void AddEnemies(int amount, int zone, Transform t)

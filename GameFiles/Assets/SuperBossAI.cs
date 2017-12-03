@@ -116,11 +116,6 @@ public class SuperBossAI : MonoBehaviour {
         {
             attackRange = true;
         }
-        if (zone == -1)
-        {
-            Debug.Log("true");
-            Debug.Log(other.gameObject.transform.parent.name);
-        }
         if (zone == -1 && other.gameObject.transform.parent.name == "Level")
         {
             zone = int.Parse(other.gameObject.name);
