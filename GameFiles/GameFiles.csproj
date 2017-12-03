@@ -228,8 +228,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AnimationManager.cs" />
+    <Compile Include="Assets\Attack2SuperBoss.cs" />
+    <Compile Include="Assets\BasicStats.cs" />
+    <Compile Include="Assets\EnemyAI.cs" />
+    <Compile Include="Assets\EnemyManagement.cs" />
     <Compile Include="Assets\PlayerAttack.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\RushAI.cs" />
+    <Compile Include="Assets\SoundManager.cs" />
+    <Compile Include="Assets\SuperBossAI.cs" />
+    <Compile Include="Assets\ZoneRelay.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
