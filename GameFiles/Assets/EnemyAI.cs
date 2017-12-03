@@ -26,14 +26,17 @@ public class EnemyAI : MonoBehaviour {
     private GameObject[] spawnedRushEnemies; //Keeps track of the spawned in rush enemies by the single enemy
     private bool spawningRushEnemies; //Stops new movements from occuring while true
     private List<Transform> callInSpawns; //Spawn points for when the enemy calls in more enemies.
-    private BoxCollider zone; //Zone of allowed movement;
+    public BoxCollider zone; //Zone of allowed movement;
     private AnimationManager animationManager;
     private BasicStats stats;
+    private EnemyManagement eManager;
     public BoxCollider HitCollider;
     public BoxCollider NormalCollider;
+    public bool canMerge = true;
 
     private void Start()
     {
+        eManager = GameObject.Find("EnemyManager").GetComponent<EnemyManagement>();
         animationManager = GetComponent<AnimationManager>();
         stats = GetComponent<BasicStats>();
         framesSinceLastMovement = 10000; //Makes sure the enemy will be able to make a movement choice on the first frame.
@@ -133,6 +136,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void CallInEnemies()
     {
+        eManager.AddEnemies(callInSpawns.Count,int.Parse(zone.name),transform);
         spawnedEnemies = true;
         for (int x=0; x<callInSpawns.Count; x++)
         {
