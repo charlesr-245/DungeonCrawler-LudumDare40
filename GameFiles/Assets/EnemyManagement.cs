@@ -8,6 +8,7 @@ public class EnemyManagement : MonoBehaviour {
     public int extraEnemiesBeforeSuperBoss;
 
     public int maxSuperBossesPerRoom;
+    private List<int> superBossesInRoom;
 
     public GameObject superBoss;
 
@@ -15,6 +16,7 @@ public class EnemyManagement : MonoBehaviour {
 
     private void Start()
     {
+        superBossesInRoom = new List<int>();
         enemiesInRoom = new List<int>();
         for (int x = 0; x<enemiesPerRoom.Length; x++)
         {
@@ -28,6 +30,11 @@ public class EnemyManagement : MonoBehaviour {
         CheckEnemies(zone, t);
     }
 
+    public void AddSuperBoss(int zone)
+    {
+        superBossesInRoom[zone] ++;
+    }
+
     public void CheckEnemies(int zone, Transform t)
     {
         if (enemiesInRoom[zone] >= enemiesPerRoom[zone]+extraEnemiesBeforeSuperBoss)
@@ -38,7 +45,8 @@ public class EnemyManagement : MonoBehaviour {
 
     private void SpawnSuperBoss(int zone, Transform t)
     {
-        Instantiate(superBoss, t.position,Quaternion.identity);
+        GameObject s = Instantiate(superBoss, t.position,Quaternion.identity);
+        s.GetComponent<SuperBossAI>().SetZone(int.Parse(t.GetComponent<EnemyAI>().zone.name));
         Destroy(t.gameObject);
         AddEnemies(-extraEnemiesBeforeSuperBoss, zone, t);
     }

@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour {
     private GameObject[] spawnedRushEnemies; //Keeps track of the spawned in rush enemies by the single enemy
     private bool spawningRushEnemies; //Stops new movements from occuring while true
     private List<Transform> callInSpawns; //Spawn points for when the enemy calls in more enemies.
-    private BoxCollider zone; //Zone of allowed movement;
+    public BoxCollider zone; //Zone of allowed movement;
     private AnimationManager animationManager;
     private BasicStats stats;
     private EnemyManagement eManager;

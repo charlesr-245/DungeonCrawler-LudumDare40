@@ -5,17 +5,29 @@ using UnityEngine;
 public class SuperBossAI : MonoBehaviour {
 
     public float speed;
+    private int frames;
 
+    public int framesBeforeAction;
     public GameObject BasicEnemy;
     private List<Transform> enemySpawns;
-    private GameObject player;
-    private GameObject zone;
+    private static GameObject player;
+    private int zone =-1;
     private bool attackRange;
     public bool attack2;
+    private bool added = false;
     private Rigidbody rb;
+    private static EnemyManagement enemy;
     private void Start()
     {
-        player = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody>();
+        if (enemy == null)
+        {
+            enemy = GameObject.Find("EnemyManager").GetComponent<EnemyManagement>();
+        }
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
         rb = GetComponent<Rigidbody>();
         enemySpawns = new List<Transform>();
         foreach (Transform t in transform)
@@ -27,9 +39,33 @@ public class SuperBossAI : MonoBehaviour {
         }
     }
 
+    public void SetZone(int _zone)
+    {
+        zone = _zone;
+    }
+
+    private void Update()
+    {
+        if (zone != -1 &&!added)
+        {
+            added = true;
+            enemy.AddSuperBoss(zone);
+        }
+        if (frames >= framesBeforeAction)
+        {
+            frames = 0;
+            AIChoice();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        frames++;
+    }
+
     private void AIChoice()
     {
-        if (zone == player.GetComponent<ZoneRelay>().GetZone())
+        if (zone == int.Parse(player.GetComponent<ZoneRelay>().GetZone().name))
         {
             rb.velocity = Vector3.zero;
             if (attackRange)
@@ -79,6 +115,28 @@ public class SuperBossAI : MonoBehaviour {
         if (other.gameObject.name == "Player")
         {
             attackRange = true;
+        }
+        if (zone == -1)
+        {
+            Debug.Log("true");
+            Debug.Log(other.gameObject.transform.parent.name);
+        }
+        if (zone == -1 && other.gameObject.transform.parent.name == "Level")
+        {
+            zone = int.Parse(other.gameObject.name);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (zone == -1 && other.gameObject.transform.parent.name == "Level")
+        {
+            zone = int.Parse(other.gameObject.name);
+        }
+        if (zone == -1)
+        {
+            Debug.Log("true2");
+            Debug.Log(other.gameObject.transform.parent.name);
         }
     }
 
