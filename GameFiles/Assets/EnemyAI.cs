@@ -29,11 +29,13 @@ public class EnemyAI : MonoBehaviour {
     private BoxCollider zone; //Zone of allowed movement;
     private AnimationManager animationManager;
     private BasicStats stats;
+    private EnemyManagement eManager;
     public BoxCollider HitCollider;
     public BoxCollider NormalCollider;
 
     private void Start()
     {
+        eManager = GameObject.Find("EnemyManager").GetComponent<EnemyManagement>();
         animationManager = GetComponent<AnimationManager>();
         stats = GetComponent<BasicStats>();
         framesSinceLastMovement = 10000; //Makes sure the enemy will be able to make a movement choice on the first frame.
