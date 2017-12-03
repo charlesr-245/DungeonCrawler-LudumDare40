@@ -32,6 +32,7 @@ public class EnemyAI : MonoBehaviour {
     private EnemyManagement eManager;
     public BoxCollider HitCollider;
     public BoxCollider NormalCollider;
+    public bool canMerge = true;
 
     private void Start()
     {
@@ -135,6 +136,7 @@ public class EnemyAI : MonoBehaviour {
 
     private void CallInEnemies()
     {
+        eManager.AddEnemies(callInSpawns.Count,int.Parse(zone.name),transform);
         spawnedEnemies = true;
         for (int x=0; x<callInSpawns.Count; x++)
         {
