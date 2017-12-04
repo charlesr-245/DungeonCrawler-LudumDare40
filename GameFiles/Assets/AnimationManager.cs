@@ -20,6 +20,7 @@ public class AnimationManager : MonoBehaviour
         animations.Add("Dead", 0);
         animations.Add("Attack", 1);
         animations.Add("Stunned", 1);
+        animations.Add("Attack2", 1);
         anim = GetComponent<Animator>();
     }
 
