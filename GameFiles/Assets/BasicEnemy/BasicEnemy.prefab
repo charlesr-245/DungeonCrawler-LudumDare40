@@ -375,10 +375,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48c5d5741270b04688754c092fbabe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttack: 2
+  isPlayer: 0
+  HPText: {fileID: 0}
+  baseAttack: 1
   baseDefense: 0
   baseRadius: 2
-  baseHP: 5
+  baseHP: 2
   baseCooldown: 5
 --- !u!114 &114702560356811038
 MonoBehaviour:

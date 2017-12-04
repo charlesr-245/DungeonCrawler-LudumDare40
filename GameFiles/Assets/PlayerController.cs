@@ -23,4 +23,6 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate () {
         Movement();
     }
+
+
 }

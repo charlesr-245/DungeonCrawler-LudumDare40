@@ -13,12 +13,18 @@ public class SuperBossAI : MonoBehaviour {
     private static GameObject player;
     private int zone =-1;
     private bool attackRange;
+    public int stunnedFrames;
+    private bool stunned = false;
     public bool attack2;
     private bool added = false;
     private Rigidbody rb;
     private static EnemyManagement enemy;
+    private AnimationManager anim;
+    private BasicStats stats;
     private void Start()
     {
+        anim = GetComponent<AnimationManager>();
+        stats = GetComponent<BasicStats>();
         rb = GetComponent<Rigidbody>();
         if (enemy == null)
         {
@@ -60,7 +66,46 @@ public class SuperBossAI : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        //DealDamage(5);
         frames++;
+    }
+
+    public void StartParticleSystem()
+    {
+        GetComponent<ParticleSystem>().Play();
+    }
+
+    IEnumerator Defeated()
+    {
+        for (int x =0; x < 60; x++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        enemy.DestroySuperBoss(zone);
+        Destroy(gameObject);
+
+    }
+
+    public void Hit(int amount, bool isStunned = false)
+    {
+        stunned = true;
+        rb.velocity = -rb.velocity;
+        stats.DecreaseHP(amount);
+        if (!isStunned)
+        {
+            if (stats.GetHP() <= 0)
+            {
+                anim.AddToQueue("Dead");
+                StartCoroutine(Defeated());
+            }
+            else
+            {
+                anim.AddToQueue("Hit");
+            }
+        } else
+        {
+            anim.AddToQueue("Stunned");
+        }
     }
 
     private void AIChoice()
@@ -97,7 +142,7 @@ public class SuperBossAI : MonoBehaviour {
 
     private void MoveTowardsPlayer()
     {
-        CameraShake();
+        CameraShake2();
         Vector3 direction = player.transform.position - transform.position;
         direction.Normalize();
         direction.z = 0;
@@ -108,6 +153,11 @@ public class SuperBossAI : MonoBehaviour {
     private void CameraShake()
     {
         Camera.main.GetComponent<Animator>().Play("CameraShake");
+    }
+
+    private void CameraShake2()
+    {
+        Camera.main.GetComponent<Animator>().Play("CameraShake2");
     }
 
     private void OnTriggerEnter(Collider other)

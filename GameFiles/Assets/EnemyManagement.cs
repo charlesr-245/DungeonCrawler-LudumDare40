@@ -26,7 +26,7 @@ public class EnemyManagement : MonoBehaviour {
 
     public bool superBossInRoom(int zone)
     {
-        Debug.Log(superBossesInRoom[zone]);
+        //Debug.Log(superBossesInRoom[zone]);
         if (superBossesInRoom[zone]>0)
         {
             return true;
@@ -59,6 +59,24 @@ public class EnemyManagement : MonoBehaviour {
         s.GetComponent<SuperBossAI>().SetZone(int.Parse(t.GetComponent<EnemyAI>().zone.name));
         Destroy(t.gameObject);
         AddEnemies(-extraEnemiesBeforeSuperBoss, zone, t);
+    }
+
+    public void DestroySuperBoss(int zone)
+    {
+        superBossesInRoom[zone]--;
+        CheckFinish();
+    }
+
+    private void CheckFinish()
+    {
+        for (int x = 0; x < superBossesInRoom.Length; x++)
+        {
+            if (superBossesInRoom[x] > 0)
+            {
+                return;
+            }
+        }
+        //PLAY UI TRANSITIONS FOR WINNING -> MAIN MENU
     }
 
 }

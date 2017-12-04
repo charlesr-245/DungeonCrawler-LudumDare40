@@ -56,6 +56,16 @@ public class EnemyAI : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player" && NormalCollider.isTrigger == false)
+        {
+            Debug.Log("STUN");
+            collision.gameObject.GetComponent<BasicStats>().DecreaseHP(stats.GetAttack());
+            Hit(0, true);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (zone == null && other.gameObject.transform.parent.name == "Level")
@@ -68,6 +78,7 @@ public class EnemyAI : MonoBehaviour {
     {
         AICheck();
     }
+
 
     private void FixedUpdate()
     {
@@ -175,23 +186,28 @@ public class EnemyAI : MonoBehaviour {
         spawnedRushEnemies = null; //Resets variable space
     }
 
-    public void Hit(BasicStats playerStats)
+    public void Hit(int amount, bool isStunned = false)
     {
-        float damage = playerStats.GetAttack() - stats.GetDefense() / 4;
-        Debug.Log(damage);
-        stats.DecreaseHP(damage);
-        Debug.Log(stats.GetHP());
+        stats.DecreaseHP(amount);
         rb.velocity = -rb.velocity;
         HitCollider.isTrigger = false;
         NormalCollider.isTrigger = true;
         StartCoroutine(ResumeCollider());
         framesSinceLastMovement = -100;
-        if (stats.GetHP() <= 0)
+
+        if (!isStunned)
         {
-            Die();
+            if (stats.GetHP() <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                animationManager.AddToQueue("Hit");
+            }
         } else
         {
-            animationManager.AddToQueue("Hit");
+            animationManager.AddToQueue("Stunned");
         }
     }
 

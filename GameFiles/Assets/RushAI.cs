@@ -14,9 +14,21 @@ public class RushAI : MonoBehaviour {
     private static GameObject player; //Reference to Player
     private Rigidbody rb; //Reference to local RigidBody
 
+    public int framesBeforeRestore;
+
     private BasicStats stats;
     private AnimationManager animationManager;
     private bool stunned;
+    private int frames;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Player" && NormalCollider.isTrigger == false)
+        {
+            collision.gameObject.GetComponent<BasicStats>().DecreaseHP(stats.GetAttack());
+            Hit(0, true);
+        }
+    }
 
     private void Start()
     {
@@ -33,10 +45,24 @@ public class RushAI : MonoBehaviour {
 
     private void Update()
     {
+        if (framesBeforeRestore <= frames)
+        {
+            stunned = false;
+            frames = 0;
+        }
         if (!stunned)
         {
             MoveTowardsPlayer();
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (stunned)
+        {
+            frames++;
+        }
+
     }
 
     private void MoveTowardsPlayer()
@@ -52,23 +78,28 @@ public class RushAI : MonoBehaviour {
         //Debug.Log("Rush Speed: " + rb.velocity);
     }
 
-    public void Hit(BasicStats playerStats)
+    public void Hit(int amount, bool isStunned = false)
     {
-        float damage = playerStats.GetAttack() - stats.GetDefense() / 4;
-        Debug.Log(damage);
-        stats.DecreaseHP(damage);
-        Debug.Log(stats.GetHP());
+        stunned = true;
         rb.velocity = -rb.velocity;
         HitCollider.isTrigger = false;
         NormalCollider.isTrigger = true;
         StartCoroutine(ResumeCollider());
-        if (stats.GetHP() <= 0)
+        if (!isStunned)
         {
-            Die();
+            stats.DecreaseHP(amount);
+            if (stats.GetHP() <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                animationManager.AddToQueue("Hit");
+            }
         }
         else
         {
-            animationManager.AddToQueue("Hit");
+            animationManager.AddToQueue("Stunned");
         }
     }
 
