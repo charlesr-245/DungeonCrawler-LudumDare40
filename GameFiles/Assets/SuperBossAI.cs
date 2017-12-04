@@ -12,7 +12,7 @@ public class SuperBossAI : MonoBehaviour {
     private List<Transform> enemySpawns;
     private static GameObject player;
     private int zone =-1;
-    private bool attackRange;
+    public bool attackRange;
     public int stunnedFrames;
     private bool stunned = false;
     public bool attack2;
@@ -21,6 +21,8 @@ public class SuperBossAI : MonoBehaviour {
     private static EnemyManagement enemy;
     private AnimationManager anim;
     private BasicStats stats;
+    private bool ready;
+
     private void Start()
     {
         anim = GetComponent<AnimationManager>();
@@ -113,10 +115,10 @@ public class SuperBossAI : MonoBehaviour {
         if (zone == int.Parse(player.GetComponent<ZoneRelay>().GetZone().name))
         {
             rb.velocity = Vector3.zero;
-            if (attackRange)
+            if (attack2)
             {
-                Attack();
-            } else if (attack2)
+                Attack2();
+            } else if (attackRange)
             {
                 Attack2();
             } else
@@ -132,12 +134,39 @@ public class SuperBossAI : MonoBehaviour {
 
     private void Attack()
     {
+        Debug.Log("TRUUUE");
         CameraShake();
+        anim.AddToQueue("Attack");
     }
 
     private void Attack2()
     {
+        Debug.Log("True");
         CameraShake();
+        StartCoroutine(ForwardRush());
+    }
+
+    private IEnumerator ForwardRush()
+    {
+        int frameCount = 0;
+        Vector3 startPosition = transform.position;
+        Vector3 playerPos = player.transform.position;
+        Vector3 direction = player.transform.position - transform.position;
+        direction.Normalize();
+        direction.z = 0;
+        rb.velocity = direction * -speed;
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
+        for (int x =0; x < 350; x++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        rb.velocity = -rb.velocity*15;
+        for (int x =0; x < 3000; x++)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        rb.velocity = Vector3.zero;
+
     }
 
     private void MoveTowardsPlayer()
