@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 1660257380124048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 4549468395605232}
   m_Father: {fileID: 4806069926839660}
@@ -345,7 +345,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16, z: 0.2}
+  m_Size: {x: 10.11, y: 10.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95618790891726114
 Animator:
@@ -399,8 +399,10 @@ MonoBehaviour:
   maxTimeToLive: 500
   BasicEnemy: {fileID: 1202300995892494}
   spawnedEnemies: 0
+  zone: {fileID: 0}
   HitCollider: {fileID: 65340983807769708}
   NormalCollider: {fileID: 65594226616283624}
+  canMerge: 1
 --- !u!114 &114798344383570222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -446,7 +448,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 08571a7a2f0acd541974f1434163ed51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

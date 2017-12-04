@@ -9,6 +9,8 @@ public class RushAI : MonoBehaviour {
     public BoxCollider NormalCollider;
     public BoxCollider HitCollider;
 
+    public GameObject MainSprite;
+
     private static GameObject player; //Reference to Player
     private Rigidbody rb; //Reference to local RigidBody
 
@@ -39,6 +41,9 @@ public class RushAI : MonoBehaviour {
 
     private void MoveTowardsPlayer()
     {
+        Vector3 dir = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        MainSprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         Vector3 direction = player.transform.position - transform.position;
         direction.Normalize();
         direction.z = 0;
