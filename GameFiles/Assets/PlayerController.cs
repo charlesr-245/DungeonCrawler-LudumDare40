@@ -2,25 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     public float speed;
-
-    private Rigidbody rb;
+    public float CameraSpeed;
+    public Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-	void Movement()
+    void Movement()
     {
         Vector3 direction;
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0) * speed;
         rb.velocity = direction;
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
+      
     }
-    
-	void FixedUpdate () {
+   
+
+    void Update()
+    {
         Movement();
+      
     }
+
+
 }
