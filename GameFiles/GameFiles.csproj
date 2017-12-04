@@ -227,6 +227,7 @@
     <Compile Include="Assets\PlayerAttack.cs" />
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\RushAI.cs" />
+    <Compile Include="Assets\SceneManager.cs" />
     <Compile Include="Assets\SoundManager.cs" />
     <Compile Include="Assets\SuperBossAI.cs" />
     <Compile Include="Assets\ZoneRelay.cs" />

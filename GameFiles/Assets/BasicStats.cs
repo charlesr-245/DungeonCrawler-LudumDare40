@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasicStats : MonoBehaviour {
 
     private AnimationManager animationManager;
-
+    public bool isPlayer;
+    public Text HPText;
     public enum Stats
     {
         Attack,
@@ -27,6 +29,10 @@ public class BasicStats : MonoBehaviour {
         radius = baseRadius;
         HP = baseHP;
         cooldown = baseCooldown;
+        if (isPlayer)
+        {
+            HPText.text = HP.ToString();
+        }
     }
 
     public float GetAttack()
@@ -72,6 +78,10 @@ public class BasicStats : MonoBehaviour {
     public void DecreaseHP(float amount)
     {
         HP -= amount;
+        if (isPlayer)
+        {
+            HPText.text = HP.ToString();
+        }
     }
     public void SetCooldown(float cool)
     {
