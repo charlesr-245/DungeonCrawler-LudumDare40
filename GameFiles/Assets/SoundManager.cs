@@ -37,7 +37,7 @@ public class SoundManager : MonoBehaviour {
 
     private void OnZoneChange()
     {
-        Debug.Log("true");
+        //Debug.Log("true");
         pastPlayerZone = playerZone;
         if (enemy.superBossInRoom(playerZone) && (music.clip == standardAudio[0] || music.clip == standardAudio[1]))
         {

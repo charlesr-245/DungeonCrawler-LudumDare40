@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour {
      
     IEnumerator CountdownToDeath()
     {
-        for (int x =0; x < 50; x++)
+        for (int x =0; x < 20; x++)
         {
             yield return new WaitForFixedUpdate();
         }
