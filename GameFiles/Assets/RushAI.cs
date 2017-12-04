@@ -25,7 +25,7 @@ public class RushAI : MonoBehaviour {
     {
         if (collision.gameObject.name == "Player" && NormalCollider.isTrigger == false)
         {
-            collision.gameObject.GetComponent<BasicStats>().DecreaseHP(stats.GetAttack());
+            collision.gameObject.GetComponent<PlayerController>().Hit(stats.GetAttack());
             Hit(0, true);
         }
     }

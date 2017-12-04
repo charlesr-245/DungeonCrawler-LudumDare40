@@ -50,6 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4760517404147070}
   - component: {fileID: 212352874612458852}
+  - component: {fileID: 65665060600762926}
   m_Layer: 0
   m_Name: MainSprite
   m_TagString: Untagged
@@ -275,7 +276,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1505747122572358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 115.5, y: 92.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4355584025206906}
@@ -383,7 +384,19 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!65 &65665060600762926
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1143920403469910}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.4, y: -10.64, z: 120.26404}
+  m_Center: {x: 0, y: 0, z: 58.71202}
 --- !u!95 &95306093571921138
 Animator:
   serializedVersion: 3
@@ -541,7 +554,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1845463586
+  randomSeed: -825138235
   InitialModule:
     serializedVersion: 3
     enabled: 1
