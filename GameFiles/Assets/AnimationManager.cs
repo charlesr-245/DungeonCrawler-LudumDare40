@@ -19,12 +19,13 @@ public class AnimationManager : MonoBehaviour
         animations.Add("Hit", 1);
         animations.Add("Dead", 0);
         animations.Add("Attack", 1);
+        animations.Add("Stunned", 1);
         anim = GetComponent<Animator>();
     }
 
     public void AddToQueue(string animation)
     {
-        Debug.Log(animation);
+        //Debug.Log(animation);
         animationQueue.Add(animation);
     }
 
@@ -47,7 +48,7 @@ public class AnimationManager : MonoBehaviour
 
     private void SetAnimation()
     {
-        Debug.Log(animationQueue[0]);
+        //Debug.Log(animationQueue[0]);
         anim.Play(animationQueue[0],animations[animationQueue[0]]);
     }
 
