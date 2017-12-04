@@ -3,19 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
-    void MeleeAttack()
-    {
-        //float distance = Vector3.Distance(TargetJoint2D.transform.position, transform.position);
+    public int damage;
+    public int distance= 20;
+    public GameObject Projectile;
+    public float projectileSpeed;
+    public float FiringRate=0.2f;
+     void Start(){
 
-        //if (distance < 1f)
-        //{
-            //EnemyHealth EHP=
-        //}
     }
-	void FixedUpdate () {
-        if (Input.GetButton("Fire1"))
+     void Update()
+    {
+        if(Input.GetButtonDown("Fire1"))
         {
-            MeleeAttack();
+            InvokeRepeating("RangedAttack",0.00000001f, FiringRate);
         }
-	}
-}
+        if (Input.GetButtonUp("Fire1"))
+        {
+            CancelInvoke("RangedAttack");
+        }
+    }
+    void RangedAttack() {
+
+        Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+        position = Camera.main.ScreenToWorldPoint(position);
+        GameObject go = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+        go.transform.LookAt(position);
+        Debug.Log(position);
+        go.GetComponent<Rigidbody>().AddForce(go.transform.forward * 1000);
+
+
+    }
+   
+    }
+
+
