@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
     public int damage;
+    public int distance= 20;
     public GameObject Projectile;
     public float projectileSpeed;
     public float FiringRate=0.2f;
@@ -21,14 +22,16 @@ public class PlayerAttack : MonoBehaviour {
             CancelInvoke("RangedAttack");
         }
     }
-    void RangedAttack() { 
-    
+    void RangedAttack() {
 
-        
-        GameObject beam = Instantiate(Projectile,transform.position,Quaternion.identity) as GameObject;
-        beam.GetComponent<Rigidbody>().velocity = new Vector3(0, projectileSpeed);
+        Vector3 position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+        position = Camera.main.ScreenToWorldPoint(position);
+        GameObject go = Instantiate(Projectile, transform.position, Quaternion.identity) as GameObject;
+        go.transform.LookAt(position);
+        Debug.Log(position);
+        go.GetComponent<Rigidbody>().AddForce(go.transform.forward * 1000);
 
-       
+
     }
    
     }
