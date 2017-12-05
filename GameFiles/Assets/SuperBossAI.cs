@@ -22,6 +22,7 @@ public class SuperBossAI : MonoBehaviour {
     private AnimationManager anim;
     private BasicStats stats;
     private bool ready;
+    private bool attacking = false;
 
     private void Start()
     {
@@ -112,7 +113,7 @@ public class SuperBossAI : MonoBehaviour {
 
     private void AIChoice()
     {
-        if (zone == int.Parse(player.GetComponent<ZoneRelay>().GetZone().name))
+        if (zone == int.Parse(player.GetComponent<ZoneRelay>().GetZone().name) && !attacking)
         {
             rb.velocity = Vector3.zero;
             if (attack2)
@@ -120,7 +121,7 @@ public class SuperBossAI : MonoBehaviour {
                 Attack2();
             } else if (attackRange)
             {
-                Attack2();
+                Attack();
             } else
             {
                 MoveTowardsPlayer();
@@ -134,21 +135,38 @@ public class SuperBossAI : MonoBehaviour {
 
     private void Attack()
     {
-        Debug.Log("TRUUUE");
+        attacking = true;
+        Debug.Log("Attack");
         CameraShake();
         anim.AddToQueue("Attack");
+        StartCoroutine(AttackDuration());
+    }
+
+    IEnumerator AttackDuration()
+    {
+        while (GetComponent<Animator>().GetCurrentAnimatorStateInfo(1).IsName("Attack"))
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        attacking = false;
+        frames = -25;
     }
 
     private void Attack2()
     {
-        Debug.Log("True");
+        Debug.Log("Attack2");
         CameraShake();
         StartCoroutine(ForwardRush());
     }
 
+    public void DoneAttacking()
+    {
+        attacking = false;
+    }
+
     private IEnumerator ForwardRush()
     {
-        int frameCount = 0;
+        attacking = true;
         Vector3 startPosition = transform.position;
         Vector3 playerPos = player.transform.position;
         Vector3 direction = player.transform.position - transform.position;
@@ -156,17 +174,29 @@ public class SuperBossAI : MonoBehaviour {
         direction.z = 0;
         rb.velocity = direction * -speed;
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
-        for (int x =0; x < 350; x++)
+        Vector3 vel = rb.velocity;
+        //Debug.Log("Waiting0");
+        for (int x =0; x < 100; x++)
         {
+            rb.velocity = direction * -speed;
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
+            //Debug.Log("Waiting");
             yield return new WaitForFixedUpdate();
         }
-        rb.velocity = -rb.velocity*15;
-        for (int x =0; x < 3000; x++)
+        rb.velocity = -vel*15;
+        CameraShake2();
+        for (int x =0; x < 150; x++)
         {
+            rb.velocity = -vel * 15;
+            //Debug.Log("Waiting2");
             yield return new WaitForFixedUpdate();
         }
-        rb.velocity = Vector3.zero;
 
+        //Debug.Log("Waiting3");
+        rb.velocity = Vector3.zero;
+        CameraShake2();
+        attacking = false;
+        //Debug.Log("Done");
     }
 
     private void MoveTowardsPlayer()
