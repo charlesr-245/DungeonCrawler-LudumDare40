@@ -186,7 +186,7 @@ public class EnemyAI : MonoBehaviour {
         spawnedRushEnemies = null; //Resets variable space
     }
 
-    public void Hit(int amount, bool isStunned = false)
+    public void Hit(float amount, bool isStunned = false)
     {
         stats.DecreaseHP(amount);
         rb.velocity = -rb.velocity;
