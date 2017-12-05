@@ -78,7 +78,7 @@ public class RushAI : MonoBehaviour {
         //Debug.Log("Rush Speed: " + rb.velocity);
     }
 
-    public void Hit(int amount, bool isStunned = false)
+    public void Hit(float amount, bool isStunned = false)
     {
         stunned = true;
         rb.velocity = -rb.velocity;
