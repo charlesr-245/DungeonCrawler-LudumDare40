@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManagement : MonoBehaviour {
 
@@ -63,6 +64,7 @@ public class EnemyManagement : MonoBehaviour {
 
     public void DestroySuperBoss(int zone)
     {
+        Debug.Log("Destroyed");
         superBossesInRoom[zone]--;
         CheckFinish();
     }
@@ -71,12 +73,13 @@ public class EnemyManagement : MonoBehaviour {
     {
         for (int x = 0; x < superBossesInRoom.Length; x++)
         {
+            Debug.Log(superBossesInRoom[x]);
             if (superBossesInRoom[x] > 0)
             {
                 return;
             }
         }
-        //PLAY UI TRANSITIONS FOR WINNING -> MAIN MENU
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
 }

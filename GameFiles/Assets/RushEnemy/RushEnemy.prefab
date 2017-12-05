@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4851469970439978}
   - component: {fileID: 65529766742040128}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: HitCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 4585525120592196}
   - component: {fileID: 212324947833608152}
   - component: {fileID: 65193845758090096}
+  - component: {fileID: 114662359317221528}
   m_Layer: 10
   m_Name: MainSprite
   m_TagString: Untagged
@@ -217,6 +218,18 @@ MonoBehaviour:
   HitCollider: {fileID: 65529766742040128}
   MainSprite: {fileID: 1150502145345808}
   framesBeforeRestore: 250
+--- !u!114 &114662359317221528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1903601036914916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7f3d96c3b94a24d877be7199eb5d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1502676794376496}
 --- !u!114 &114880232570969546
 MonoBehaviour:
   m_ObjectHideFlags: 1

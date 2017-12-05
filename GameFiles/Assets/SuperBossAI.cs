@@ -89,7 +89,7 @@ public class SuperBossAI : MonoBehaviour {
 
     }
 
-    public void Hit(int amount, bool isStunned = false)
+    public void Hit(float amount, bool isStunned = false)
     {
         stunned = true;
         rb.velocity = -rb.velocity;

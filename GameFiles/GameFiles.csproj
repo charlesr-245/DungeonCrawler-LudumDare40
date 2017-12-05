@@ -233,6 +233,8 @@
     <Compile Include="Assets\BasicStats.cs" />
     <Compile Include="Assets\EnemyAI.cs" />
     <Compile Include="Assets\EnemyManagement.cs" />
+    <Compile Include="Assets\EnemyParent.cs" />
+    <Compile Include="Assets\LazerTime.cs" />
     <Compile Include="Assets\PlayerAttack.cs" />
     <Compile Include="Assets\PlayerController.cs" />
     <Compile Include="Assets\RushAI.cs" />

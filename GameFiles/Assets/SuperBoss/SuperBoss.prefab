@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4341913580535298}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(1)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4039656945671302}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(6)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4760517404147070}
   - component: {fileID: 212352874612458852}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 4629171856431562}
   - component: {fileID: 135235489730829806}
   - component: {fileID: 114394904357794764}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Attack2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4616666374873338}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(2)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4506864752194312}
   - component: {fileID: 65941297634902848}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4717027330610072}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(7)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4355584025206906}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 199119980896480022}
   - component: {fileID: 54540880410885018}
   - component: {fileID: 135583608583590288}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SuperBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4020833000632928}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(8)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4369012023161712}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(3)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4768988579092684}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(5)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4666765473745546}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: EnemySpawn(4)
   m_TagString: CallInSpawnPoint
   m_Icon: {fileID: 0}
@@ -584,7 +584,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 485351860
+  randomSeed: -350877181
   InitialModule:
     serializedVersion: 3
     enabled: 1
