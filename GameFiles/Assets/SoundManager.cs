@@ -23,7 +23,10 @@ public class SoundManager : MonoBehaviour {
         enemy = GameObject.Find("EnemyManager").GetComponent<EnemyManagement>();
     }
 
-
+    public void UpgradeAudio()
+    {
+        effects.Play();
+    }
     private void Update()
     {
         if (pastPlayerZone != playerZone && playerZone != -1)
