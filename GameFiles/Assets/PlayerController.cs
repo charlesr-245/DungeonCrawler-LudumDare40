@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private BasicStats stats;
     private AnimationManager anim;
+    public GameObject Sprite;
 
     void Start()
     {
@@ -19,6 +20,15 @@ public class PlayerController : MonoBehaviour {
 
 	void Movement()
     {
+
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 0;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3 dir = mousePos - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Vector3 eulerAngles = Quaternion.AngleAxis(angle, Vector3.forward).eulerAngles;
+        eulerAngles.z -= 90;
+        Sprite.transform.eulerAngles = eulerAngles;
         Vector3 direction;
         direction = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0) * speed;
         rb.velocity = direction;
