@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 114918308371592802}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
   baseDefense: 0
   baseRadius: 0
   baseHP: 5
-  baseCooldown: 0.0000001
+  baseCooldown: 0.9
 --- !u!114 &114918308371592802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 20
   Projectile: {fileID: 1965885291859664, guid: 91e97fa118a45d84b8643c4a4ec1a297, type: 2}
-  speed: 0
+  speed: 20
   position: {fileID: 1560467115906098}
   Sprite: {fileID: 1172823701840562}
 --- !u!114 &114943691500281806

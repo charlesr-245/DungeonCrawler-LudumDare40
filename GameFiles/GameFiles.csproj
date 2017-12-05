@@ -217,15 +217,6 @@
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AnimationManager.cs" />
@@ -233,6 +224,7 @@
     <Compile Include="Assets\BasicStats.cs" />
     <Compile Include="Assets\EnemyAI.cs" />
     <Compile Include="Assets\EnemyManagement.cs" />
+    <Compile Include="Assets\HealthIncremetor.cs" />
     <Compile Include="Assets\EnemyParent.cs" />
     <Compile Include="Assets\LazerTime.cs" />
     <Compile Include="Assets\PlayerAttack.cs" />
@@ -240,6 +232,7 @@
     <Compile Include="Assets\RushAI.cs" />
     <Compile Include="Assets\SceneManager.cs" />
     <Compile Include="Assets\SoundManager.cs" />
+    <Compile Include="Assets\SpeedUpgrade.cs" />
     <Compile Include="Assets\SuperBossAI.cs" />
     <Compile Include="Assets\ZoneRelay.cs" />
   </ItemGroup>
